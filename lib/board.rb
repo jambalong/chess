@@ -41,6 +41,10 @@ class Board
     @board[position[0]][position[1]]
   end
 
+  def place_piece!(piece, position)
+    @board[position[0]][position[1]] = piece
+  end
+
   private
 
   def setup_board
