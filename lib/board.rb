@@ -27,6 +27,16 @@ class Board
     puts "  a b c d e f g h"
   end
 
+  def move_piece!(start_pos, end_pos)
+    piece = @board[start_pos[0]][start_pos[1]]
+    return false if piece.nil? || !piece.valid_move?(end_pos, @board)
+
+    @board[end_pos[0]][end_pos[1]] = piece
+    @board[start_pos[0]][start_pos[1]] = nil
+    piece.move_to(end_pos)
+    true
+  end
+
   private
 
   def setup_board
