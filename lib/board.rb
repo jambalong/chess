@@ -37,6 +37,10 @@ class Board
     true
   end
 
+  def piece_at(position)
+    @board[position[0]][position[1]]
+  end
+
   private
 
   def setup_board
