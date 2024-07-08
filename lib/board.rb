@@ -13,7 +13,6 @@ require_relative 'piece/rook'
 class Board
   def initialize
     @board = Array.new(8) { Array.new(8) }
-    setup_board
   end
 
   def display
@@ -45,10 +44,14 @@ class Board
     @board[position[0]][position[1]] = piece
   end
 
+  def setup_board
+    setup_white_pieces
+    setup_black_pieces
+  end
+
   private
 
-  def setup_board
-    # Set up white pieces
+  def setup_white_pieces
     @board[0][0] = Rook.new(:white, [0, 0])
     @board[0][1] = Knight.new(:white, [0, 1])
     @board[0][2] = Bishop.new(:white, [0, 2])
@@ -58,8 +61,9 @@ class Board
     @board[0][6] = Knight.new(:white, [0, 6])
     @board[0][7] = Rook.new(:white, [0, 7])
     @board[1].map!.with_index { |_, i| Pawn.new(:white, [1, i]) }
+  end
 
-    # Set up black pieces
+  def setup_black_pieces
     @board[7][0] = Rook.new(:black, [7, 0])
     @board[7][1] = Knight.new(:black, [7, 1])
     @board[7][2] = Bishop.new(:black, [7, 2])
