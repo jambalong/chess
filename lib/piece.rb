@@ -6,7 +6,7 @@
 # It should also keep track of whether the piece has moved.
 # It should be subclassed for each type of piece (e.g., Pawn, Rook, Knight).
 class Piece
-  attr_reader :color, :position, :has_moved
+  attr_reader :color, :position
 
   def initialize(color, position)
     @color = color
@@ -21,6 +21,10 @@ class Piece
 
   def valid_move?(end_pos, board)
     raise NotImplementedError
+  end
+
+  def has_moved?
+    @has_moved
   end
 
   private
