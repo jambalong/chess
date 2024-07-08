@@ -49,6 +49,10 @@ class Board
     setup_black_pieces
   end
 
+  def clear_board!
+    @board.map! { Array.new(8) }
+  end
+
   private
 
   def setup_white_pieces
