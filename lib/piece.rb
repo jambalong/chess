@@ -32,4 +32,14 @@ class Piece
   def to_s
     @symbol
   end
+
+  def within_board?(end_pos, board)
+    x, y = end_pos
+    x.between?(0, board.size - 1) && y.between?(0, board.size - 1)
+  end
+
+  def same_color_piece?(end_pos, board)
+    piece_at_end_pos = board[end_pos[0]][end_pos[1]]
+    piece_at_end_pos&.color == @color
+  end
 end
