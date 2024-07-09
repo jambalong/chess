@@ -46,6 +46,10 @@ class Board
     @matrix[position[0]][position[1]] = piece
   end
 
+  def remove_piece!(position)
+    @matrix[position[0]][position[1]] = nil
+  end
+
   def setup_board
     setup_white_pieces
     setup_black_pieces
