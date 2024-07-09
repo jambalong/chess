@@ -10,16 +10,15 @@ class Bishop < Piece
   end
 
   def valid_move?(end_pos, board)
-    return false unless diagonal_move?(end_pos)
-    return false if obstructed?(end_pos, board)
-    return false if same_color_piece?(end_pos, board)
+    return false unless super
+    return false if obstructed_in_diagonal?(end_pos, board)
 
     true
   end
 
   private
 
-  def obstructed?(end_pos, board)
+  def obstructed_in_diagonal?(end_pos, board)
     row_diff = end_pos[0] - @position[0]
     col_diff = end_pos[1] - @position[1]
     row_dir = row_diff.positive? ? 1 : -1

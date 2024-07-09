@@ -10,9 +10,8 @@ class Rook < Piece
   end
 
   def valid_move?(end_pos, board)
+    return false unless super
     return false if obstructed?(end_pos, board)
-    return false if same_color_piece?(end_pos, board)
-    return false unless horizontal_move?(end_pos) || vertical_move?(end_pos)
 
     true
   end

@@ -20,7 +20,11 @@ class Piece
   end
 
   def valid_move?(end_pos, board)
-    raise NotImplementedError
+    return false unless within_board?(end_pos)
+    return false unless destination_clear?(end_pos, board)
+    return false unless correct_piece_movement?(end_pos)
+
+    true
   end
 
   def has_moved?
@@ -33,9 +37,18 @@ class Piece
     @symbol
   end
 
-  def within_board?(end_pos, board)
-    x, y = end_pos
-    x.between?(0, board.matrix.size - 1) && y.between?(0, board.matrix.size - 1)
+  def within_board?(end_pos)
+    row, col = end_pos
+    row.between?(0, 7) && col.between?(0, 7)
+  end
+
+  def destination_clear?(end_pos, board)
+    piece_at_end = board.piece_at(end_pos)
+    piece_at_end.nil? || piece_at_end.color != @color
+  end
+
+  def correct_piece_movement?(end_pos)
+    horizontal_move?(end_pos) || vertical_move?(end_pos) || diagonal_move?(end_pos) || knight_move?(end_pos)
   end
 
   def same_color_piece?(end_pos, board)
@@ -53,5 +66,15 @@ class Piece
 
   def diagonal_move?(end_pos)
     (@position[0] - end_pos[0]).abs == (@position[1] - end_pos[1]).abs
+  end
+
+  def knight_move?(end_pos)
+    row_diff = (@position[0] - end_pos[0]).abs
+    col_diff = (@position[1] - end_pos[1]).abs
+
+    return true if row_diff == 2 && col_diff == 1
+    return true if row_diff == 1 && col_diff == 2
+
+    false
   end
 end
