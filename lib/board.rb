@@ -32,8 +32,8 @@ class Board
     piece = piece_at(start_pos)
     return false if piece.nil? || !piece.valid_move?(end_pos, self)
 
-    @matrix[end_pos[0]][end_pos[1]] = piece
-    @matrix[start_pos[0]][start_pos[1]] = nil
+    place_piece!(piece, end_pos)
+    remove_piece!(start_pos)
     piece.move_to(end_pos)
     true
   end
