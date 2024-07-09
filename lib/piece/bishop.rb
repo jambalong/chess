@@ -8,4 +8,37 @@ class Bishop < Piece
     super(color, position)
     @symbol = color == :white ? '♗' : '♝'
   end
+
+  def valid_move?(end_pos, board)
+    return false unless diagonal_move?(end_pos)
+    return false if obstructed?(end_pos, board)
+    return false if same_color_piece?(end_pos, board)
+
+    true
+  end
+
+  private
+
+  def diagonal_move?(end_pos)
+    (@position[0] - end_pos[0]).abs == (@position[1] - end_pos[1]).abs
+  end
+
+  def obstructed?(end_pos, board)
+    row_diff = end_pos[0] - @position[0]
+    col_diff = end_pos[1] - @position[1]
+    row_dir = row_diff.positive? ? 1 : -1
+    col_dir = col_diff.positive? ? 1 : -1
+
+    row = @position[0] + row_dir
+    col = @position[1] + col_dir
+
+    while row != end_pos[0] && col != end_pos[1]
+      return true if board.piece_at([row, col])
+
+      row += row_dir
+      col += col_dir
+    end
+
+    false
+  end
 end
