@@ -42,4 +42,16 @@ class Piece
     piece = board.piece_at(end_pos)
     piece&.color == @color
   end
+
+  def horizontal_move?(end_pos)
+    @position[0] == end_pos[0]
+  end
+
+  def vertical_move?(end_pos)
+    @position[1] == end_pos[1]
+  end
+
+  def diagonal_move?(end_pos)
+    (@position[0] - end_pos[0]).abs == (@position[1] - end_pos[1]).abs
+  end
 end

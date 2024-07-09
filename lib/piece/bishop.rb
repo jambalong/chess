@@ -19,10 +19,6 @@ class Bishop < Piece
 
   private
 
-  def diagonal_move?(end_pos)
-    (@position[0] - end_pos[0]).abs == (@position[1] - end_pos[1]).abs
-  end
-
   def obstructed?(end_pos, board)
     row_diff = end_pos[0] - @position[0]
     col_diff = end_pos[1] - @position[1]

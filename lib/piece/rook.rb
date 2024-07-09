@@ -29,14 +29,6 @@ class Rook < Piece
     end
   end
 
-  def horizontal_move?(end_pos)
-    @position[0] == end_pos[0]
-  end
-
-  def vertical_move?(end_pos)
-    @position[1] == end_pos[1]
-  end
-
   def same_row?(end_pos)
     @position[0] == end_pos[0]
   end
@@ -60,6 +52,4 @@ class Rook < Piece
     end
     false
   end
-
-
 end
