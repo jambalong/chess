@@ -19,10 +19,10 @@ class Pawn < Piece
   private
 
   def obstructed?(end_pos, board)
-    return false if @position[1] == end_pos[1] && forward_one?(end_pos) && board[end_pos[0]][end_pos[1]].nil?
-    return false if @position[1] == end_pos[1] && forward_two?(end_pos) && board[end_pos[0]][end_pos[1]].nil?
+    return false if @position[1] == end_pos[1] && forward_one?(end_pos) && board.piece_at(end_pos).nil?
+    return false if @position[1] == end_pos[1] && forward_two?(end_pos) && board.piece_at(end_pos).nil?
 
-    return false if capture_move?(end_pos) && !board[end_pos[0]][end_pos[1]].nil?
+    return false if capture_move?(end_pos) && !board.piece_at(end_pos).nil?
 
     true
   end
