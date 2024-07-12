@@ -30,7 +30,6 @@ class Board
 
   def move_piece!(start_pos, end_pos)
     piece = piece_at(start_pos)
-    return false if piece.nil? || !piece.valid_move?(end_pos, self)
 
     place_piece!(piece, end_pos)
     remove_piece!(start_pos)
@@ -59,7 +58,39 @@ class Board
     @matrix.map! { Array.new(8) }
   end
 
+  def in_check?(color)
+    king_position = find_king_position(color)
+
+    return false unless king_position
+
+    @matrix.flatten.any? do |piece|
+      next if piece.nil? || piece.color == color
+
+      piece.valid_moves(self).include?(king_position)
+    end
+  end
+
+  def checkmate?(color)
+    return false unless in_check?(color)
+
+    @matrix.flatten.each do |piece|
+      next if piece.nil? || piece.color != color
+
+      piece.valid_moves(self).each do |move|
+        return false unless move_out_of_check?(piece.position, move, color)
+      end
+    end
+
+    true
+  end
+
   private
+
+  def move_out_of_check?(start_pos, end_pos, color)
+    dup_board = Marshal.load(Marshal.dump(self))
+    dup_board.move_piece!(start_pos, end_pos)
+    dup_board.in_check?(color)
+  end
 
   def setup_white_pieces
     @matrix[0][0] = Rook.new(:white, [0, 0])
