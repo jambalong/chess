@@ -16,6 +16,12 @@ class Bishop < Piece
     true
   end
 
+  def valid_moves(board)
+    moves = []
+    moves += diagonal_moves(board)
+    moves
+  end
+
   private
 
   def obstructed_in_diagonal?(end_pos, board)

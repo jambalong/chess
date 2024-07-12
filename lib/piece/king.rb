@@ -16,6 +16,23 @@ class King < Piece
     true
   end
 
+  def valid_moves(board)
+    moves = []
+
+    (-1..1).each do |row|
+      (-1..1).each do |col|
+        next if row.zero? && col.zero?
+
+        new_pos = [@position[0] + row, @position[1] + col]
+        next unless valid_move?(new_pos, board)
+
+        moves << new_pos
+      end
+    end
+
+    moves
+  end
+
   private
 
   def move_distance_invalid?(end_pos, far_threshold: 1, short_threshold: 1)

@@ -16,6 +16,25 @@ class Pawn < Piece
     true
   end
 
+  def valid_moves(board)
+    moves = []
+    forward_direction = (@color == :white ? 1 : -1)
+
+    # Single forward move
+    moves << [@position[0] + forward_direction, @position[1]] if valid_move?([@position[0] + forward_direction, @position[1]], board)
+
+    # Double forward move from starting position
+    if ((@color == :white && @position[0] == 1) || (@color == :black && @position[0] == 6))
+      moves << [@position[0] + 2 * forward_direction, @position[1]] if valid_move?([@position[0] + 2 * forward_direction, @position[1]], board)
+    end
+
+    # Diagonal attacks
+    moves << [@position[0] + forward_direction, @position[1] - 1] if valid_move?([@position[0] + forward_direction, @position[1] - 1], board)
+    moves << [@position[0] + forward_direction, @position[1] + 1] if valid_move?([@position[0] + forward_direction, @position[1] + 1], board)
+
+    moves
+  end
+
   private
 
   def obstructed?(end_pos, board)

@@ -77,4 +77,45 @@ class Piece
 
     false
   end
+
+  def horizontal_moves(board)
+    moves = []
+
+    (0..7).each do |col|
+      next if col == @position[1]
+
+      end_pos = [@position[0], col]
+      moves << end_pos if valid_move?(end_pos, board)
+    end
+
+    moves
+  end
+
+  def vertical_moves(board)
+    moves = []
+
+    (0..7).each do |row|
+      next if row == @position[0]
+
+      end_pos = [row, @position[1]]
+      moves << end_pos if valid_move?(end_pos, board)
+    end
+
+    moves
+  end
+
+  def diagonal_moves(board)
+    moves = []
+
+    (0..7).each do |row|
+      (0..7).each do |col|
+        next if row == @position[0] && col == @position[1]
+
+        end_pos = [row, col]
+        moves << end_pos if valid_move?(end_pos, board)
+      end
+    end
+
+    moves
+  end
 end

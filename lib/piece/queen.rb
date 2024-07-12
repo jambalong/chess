@@ -16,6 +16,16 @@ class Queen < Piece
     true
   end
 
+  def valid_moves(board)
+    moves = []
+
+    moves += horizontal_moves(board)
+    moves += vertical_moves(board)
+    moves += diagonal_moves(board)
+
+    moves
+  end
+
   private
 
   def obstructed?(end_pos, board)
