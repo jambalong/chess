@@ -10,13 +10,41 @@ require_relative 'player'
 class Game
   def initialize
     @board = Board.new
-    @player_one = Player.new('Player 1', :white)
-    @player_two = Player.new('Player 2', :black)
+    @player_one = Player.new('White', :white)
+    @player_two = Player.new('Black', :black)
     @current_player = @player_one
   end
 
   def play
     # Main game loop
+    @board.setup_board
     @board.display
+
+    loop do
+      start_pos, end_pos = @current_player.get_move(@board)
+
+      @board.move_piece!(start_pos, end_pos)
+      @board.display
+
+      if @board.in_check?(@current_player.color)
+        puts "#{@current_player.color} is in check!"
+      end
+
+      break if @board.checkmate?(opponent.color)
+
+      switch_current_player
+    end
+
+    puts "Game over! #{@current_player.name} wins!"
+  end
+
+  private
+
+  def opponent
+    @current_player == @player_one ? @player_two : @player_one
+  end
+
+  def switch_current_player
+    @current_player = @current_player == @player_one ? @player_two : @player_one
   end
 end
