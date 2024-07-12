@@ -84,6 +84,14 @@ class Board
     true
   end
 
+  def find_king_position(color)
+    @matrix.flatten.each do |piece|
+      return piece.position if piece.is_a?(King) && piece.color == color
+    end
+
+    nil
+  end
+
   private
 
   def move_out_of_check?(start_pos, end_pos, color)
