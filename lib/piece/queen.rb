@@ -6,7 +6,6 @@ require_relative '../piece'
 class Queen < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♕' : '♛'
   end
 
   def valid_move?(end_pos, board)
@@ -27,6 +26,10 @@ class Queen < Piece
   end
 
   private
+
+  def to_s
+    @color == :white ? '♕' : '♛'
+  end
 
   def obstructed?(end_pos, board)
     if horizontal_move?(end_pos)

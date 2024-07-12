@@ -6,7 +6,6 @@ require_relative '../piece'
 class Knight < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♘' : '♞'
   end
 
   def valid_move?(end_pos, board)
@@ -29,5 +28,11 @@ class Knight < Piece
     end
 
     moves
+  end
+
+  private
+
+  def to_s
+    @color == :white ? '♘' : '♞'
   end
 end

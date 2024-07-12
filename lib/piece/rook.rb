@@ -6,7 +6,6 @@ require_relative '../piece'
 class Rook < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♖' : '♜'
   end
 
   def valid_move?(end_pos, board)
@@ -26,6 +25,10 @@ class Rook < Piece
   end
 
   private
+
+  def to_s
+    @color == :white ? '♖' : '♜'
+  end
 
   def obstructed?(end_pos, board)
     if same_row?(end_pos)

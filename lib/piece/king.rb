@@ -6,7 +6,6 @@ require_relative '../piece'
 class King < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♔' : '♚'
   end
 
   def valid_move?(end_pos, board)
@@ -34,6 +33,10 @@ class King < Piece
   end
 
   private
+
+  def to_s
+    @color == :white ? '♔' : '♚'
+  end
 
   def move_distance_invalid?(end_pos, far_threshold: 1, short_threshold: 1)
     row_diff = (@position[0] - end_pos[0]).abs

@@ -33,10 +33,6 @@ class Piece
 
   private
 
-  def to_s
-    @symbol
-  end
-
   def within_board?(end_pos)
     row, col = end_pos
     row.between?(0, 7) && col.between?(0, 7)

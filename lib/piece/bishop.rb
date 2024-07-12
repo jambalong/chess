@@ -6,7 +6,6 @@ require_relative '../piece'
 class Bishop < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♗' : '♝'
   end
 
   def valid_move?(end_pos, board)
@@ -23,6 +22,10 @@ class Bishop < Piece
   end
 
   private
+
+  def to_s
+    @color == :white ? '♗' : '♝'
+  end
 
   def obstructed_in_diagonal?(end_pos, board)
     row_diff = end_pos[0] - @position[0]

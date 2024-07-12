@@ -6,7 +6,6 @@ require_relative '../piece'
 class Pawn < Piece
   def initialize(color, position)
     super(color, position)
-    @symbol = color == :white ? '♙' : '♟︎'
   end
 
   def valid_move?(end_pos, board)
@@ -36,6 +35,10 @@ class Pawn < Piece
   end
 
   private
+
+  def to_s
+    @color == :white ? '♙' : '♟︎'
+  end
 
   def obstructed?(end_pos, board)
     return false if @position[1] == end_pos[1] && forward_one?(end_pos) && board.piece_at(end_pos).nil?
