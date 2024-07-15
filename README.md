@@ -16,3 +16,8 @@ This project is part of The Odin project: [Ruby Chess](https://www.theodinprojec
 
 1. Build a very basic AI computer player (perhaps who does a random legal move)
 
+## TODO:
+
+1. Add Save board state
+2. Add Castling moves
+3. Add En Peasant moves
