@@ -2,22 +2,53 @@
 
 This project is part of The Odin project: [Ruby Chess](https://www.theodinproject.com/lessons/ruby-ruby-final-project) in Ruby Curriculum.
 
-## Assignment
+## Project Overview
 
-1. **Build a command line Chess game where two players can play against each other.**
-2. The game should be properly constrained – it should prevent players from making illegal moves and declare check or check mate in the correct situations.
-3. Make it so you can save the board at any time (remember how to serialize?)
-4. Write tests for the important parts. You don’t need to TDD it (unless you want to), but be sure to use RSpec tests for anything that you find yourself typing into the command line repeatedly.
-5. Do your best to keep your classes modular and clean and your methods doing only one thing each. This is the largest program that you’ve written, so you’ll definitely start to see the benefits of good organization (and testing) when you start running into bugs.
-6. Unfamiliar with Chess? Check out some of the additional resources to help you get your bearings.
-7. Have fun! Check out the unicode characters for a little spice for your gameboard.
+This command-line Chess game allows two players to engage in a match directly through the terminal. The game adheres to standard chess rules, ensuring an authentic experience. Key features include:
+
+## Live Demo
+A live demo of the Chess game is available on Replit: [Play Chess on Replit](https://replit.com/@jambalong/chess)
+
+## What I Learned
+
+- **Legal Move Validation**: Prevents illegal moves and properly handles check and checkmate scenarios.
+- **Modular Code Design**: Maintains clean, organized code to facilitate debugging and future enhancements.
+- **Unit Testing with RSpec**: Improved my skills in writing tests to ensure code reliability and correctness.
+- **Object-Oriented Design**: Developed a deeper understanding of modular code organization and the importance of single-responsibility principles in programming.
+
+## Assignment Objectives
+
+1. **Command-Line Chess Game**: Develop a game where two players can play against each other directly in the terminal.
+2. **Game Constraints**: Implement rules to prevent illegal moves, with functionality to declare check or checkmate in the correct scenarios.
+4. **Testing**: Write comprehensive RSpec tests for critical components. While TDD is not mandatory, ensure that frequently used functionalities are well-tested.
+5. **Modular Design**: Maintain clean and modular code. Aim for each method and class to serve a single responsibility, aiding in debugging and maintenance.
+6. **Chess Knowledge**: If you're unfamiliar with the game, explore additional resources to understand chess mechanics and rules.
+7. **Fun Enhancements**: Enhance the game visually by incorporating Unicode characters for a more engaging game board experience.
 
 **Extra Credits**
 
-1. Build a very basic AI computer player (perhaps who does a random legal move)
+1. **Basic AI Player**: Implement a simple AI opponent that can make random legal moves.
 
-## TODO:
+## Getting Started
 
-1. Add Save board state
-2. Add Castling moves
-3. Add En Peasant moves
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/jambalong/chess.git
+    cd chess
+    ```
+
+2. **Install dependencies**:
+    ```bash
+    bundle install
+    ```
+
+3. **Run the game**:
+    ```bash
+    bundle exec ruby chess_game.rb
+    ```
+
+## TODO List
+
+- [ ] Add functionality to save board state.
+- [ ] Implement castling moves for both players.
+- [ ] Add en passant rules for pawns.
